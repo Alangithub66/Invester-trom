@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest-trom</title>
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+            height: 200vh;
+            position: relative;
+            transition: background-color 1s;
+        }
+
+        .header-image {
+            display: block;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 20px;
+            border: 5px solid white;
+        }
+
+        .particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            animation: move 10s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate(calc(100vw * var(--x)), calc(100vh * var(--y)));
+            }
+            100% {
+                transform: translate(calc(100vw * var(--x-end)), calc(100vh * var(--y-end)));
+            }
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-container iframe {
+            width: 560px;
+            height: 315px;
+            border-radius: 15px;
+            border: 5px solid transparent;
+            animation: neon 4s infinite;
+        }
+
+        @keyframes neon {
+            0%, 100% {
+                border-image: linear-gradient(to top, #00ff00, #00ff00 50%, #0000ff 50%, #0000ff) 1;
+            }
+            50% {
+                border-image: linear-gradient(to top, #0000ff, #0000ff 50%, #00ff00 50%, #00ff00) 1;
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .social-button {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .social-button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .social-button:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp {
+            background-color: transparent;
+            box-shadow: 0px 0px 20px 10px #00ff00;
+        }
+
+        .instagram {
+            background-color: transparent;
+            box-shadow: 0px 0px 20px 10px #ff007f;
+        }
+
+        .gmail {
+            background-color: transparent;
+            box-shadow: 0px 0px 20px 10px #888;
+            transition: box-shadow 1s ease;
+        }
+
+        .gmail:hover {
+            box-shadow: 0px 0px 20px 10px #00d1ff;
+        }
+
+        .arrow {
+            margin-left: 10px;
+            animation: moveArrow 1s infinite alternate;
+        }
+
+        @keyframes moveArrow {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Estilo para o botão de pílula e link */
+        .link-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 2px solid #00ff00;
+            background-color: transparent;
+            color: #00ff00;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            opacity: 0;
+            animation: expandContract 13s infinite, borderColorChange 4s infinite;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        .link-button:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes expandContract {
+            0% {
+                transform: scaleX(0);
+                opacity: 1;
+            }
+            10% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+            40% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+            53% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+            56% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scaleX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes borderColorChange {
+            0%, 100% {
+                border-color: #00ff00;
+                box-shadow: 0 0 20px #00ff00;
+            }
+            50% {
+                border-color: #00ffff;
+                box-shadow: 0 0 20px #00ffff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particle-container">
+        <!-- As partículas serão adicionadas aqui via JavaScript -->
+    </div>
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqCUKM3w3B2JSoOBZ0FCzlFOtWKXIqNDXJSROi_BDUvefjM4q6TEU1izm0&s=10" class="header-image" alt="Imagem de Cabeça">
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/GSKRkCK7GIs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="buttons-container">
+        <a href="https://wa.me/81989020449" class="social-button whatsapp" target="_blank">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE5Z8LnrPbQAu9KNjgl45aJWPlf89hXk5gXA&s" alt="WhatsApp">
+            WhatsApp
+            <span class="arrow">➜</span>
+        </a>
+
+        <a href="https://www.instagram.com/investtrom.659748?igsh=Z2RlYm9ieGhwM2Iw" class="social-button instagram" target="_blank">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo7tLojlzkZz6Aw34kFcd8LOL6n0bSvjwgDPGMGDk7JXkNYSsMLUfhZJ6Y&s=10" alt="Instagram">
+            Instagram
+            <span class="arrow">➜</span>
+        </a>
+
+        <a href="mailto:investtrompay@gmail.com" class="social-button gmail" target="_blank">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAz8L1atY9da-Vgdt-ISRjA8lJrZZcF1PIeLLIwIR-ZDzCxfC7elogwAc&s=10" alt="Gmail">
+            Gmail
+            <span class="arrow">➜</span>
+        </a>
+    </div>
+
+    <!-- Botão com link animado -->
+    <div class="link-button-container">
+        <a href="https://pay.kiwify.com.br/XhmT4CD?afid=TPdZAbmO" class="link-button" target="_blank">
+            Acesse o Link
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const colors = ['#00ff00'];
+            const particleCount = 100;
+            const particles = [];
+            const particleContainer = document.querySelector('.particle-container');
+
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.setProperty('--
